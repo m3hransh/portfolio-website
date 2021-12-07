@@ -9,25 +9,27 @@ import { NotionAPI } from "notion-client";
 import { ExtendedRecordMap } from "notion-types";
 import NotionPage from "../../components/NotionPage";
 import Container from "../../components/Container";
+import { Pages } from "../../lib/types";
+import { getMainPages } from "../../lib/get-main-pages";
 
-const BlogPost: NextPage<BlogPostProps> = ({ recordMap }) => {
+const BlogPost: NextPage<BlogPostProps> = ({ recordMap, pages }) => {
   return (
-    <Container>
+    <Container pages={pages}>
       <NotionPage recordMap={recordMap} />
     </Container>
   );
 };
 interface BlogPostProps {
   recordMap: ExtendedRecordMap;
+  pages: Pages;
 }
 interface Params extends ParsedUrlQuery {
   slug: string;
 }
 export const getStaticProps: GetStaticProps<BlogPostProps, Params> =
   async ({ params }) => {
-    const data = await resolveRootPageData();
-    // Get only notion pages or databases
-    const blog_id = (await resolveMainPage("blog"))?.id;
+    const pages: Pages = await getMainPages();
+    const blog_id = pages.find((p) => p.title === "blog")?.notionId;
     if (!blog_id) return { notFound: true };
     const blogItems = await resolveBlogPage(blog_id);
     const post = blogItems.find(
@@ -36,13 +38,14 @@ export const getStaticProps: GetStaticProps<BlogPostProps, Params> =
     if (!post) return { notFound: true };
     const notion = new NotionAPI();
     const recordMap = await notion.getPage(post.id);
-    console.log(recordMap);
+    // console.log(recordMap);
 
-    return { props: { recordMap } };
+    return { props: { recordMap, pages } };
   };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blog_id = (await resolveMainPage("blog"))?.id;
+  const { block } = await resolveMainPage("blog");
+  const blog_id = block?.id;
   if (!blog_id) throw error("There is blog page in root notion page");
   const blogItems = await resolveBlogPage(blog_id);
   const paths = blogItems.map((item) => ({

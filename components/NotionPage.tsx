@@ -27,14 +27,14 @@ const NotionPage: FC<Props> = (props) => {
   }
   const title = getPageTitle(recordMap);
   return (
-    <div className="relative max-w-2xl mx-auto">
+    <div className="relative md:max-w-2xl mx-auto">
       <Head>
         <meta name="description" content="Mehran portfolio" />
         <title>{title}</title>
       </Head>
       {/* <Navigation active={showPannel} /> */}
       <NotionRenderer
-        bodyClassName={cs("max-w-2xl")}
+        bodyClassName={cs("md:max-w-2xl px-3")}
         recordMap={recordMap}
         fullPage={true}
         showTableOfContents={true}

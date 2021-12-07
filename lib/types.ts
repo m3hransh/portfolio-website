@@ -2,7 +2,7 @@ import { ExtendedRecordMap } from "notion-types";
 
 export interface Page {
   title: string;
-  notionId: string;
+  notionId: string | null | undefined;
 }
 export type Pages = Array<Page>;
 
@@ -36,7 +36,8 @@ export type MainPageProps =
   | {
       type: "blog";
       pageData: BlogItems;
+      pages: Pages;
     }
-  | { type: "projects"; pageData: any }
-  | { type: "courses"; pageData: {} }
-  | { type: "about"; pageData: ExtendedRecordMap };
+  | { type: "projects"; pages: Pages; pageData: ProjectItems }
+  | { type: "courses"; pages: Pages; pageData: {} }
+  | { type: "about"; pages: Pages; pageData: ExtendedRecordMap };

@@ -26,14 +26,22 @@ html {
 #docs-root {
   --bg-color: theme("colors.background.50")
   --fg-color: theme("colors.main.700")
+  --bg-color-1:theme("colors.background.50")
 }
 .dark-mode {
   --bg-color: theme("colors.background.800")
+  
+  --bg-color-1: theme("colors.background.800")
   --fg-color: theme("colors.main.100")
 }
 .notion {
   font-family: inherit;
 }
+.notion-header {
+  padding: 0;
+  @apply bg-background-100 bg-opacity-50 dark:bg-background-900 dark:bg-opacity-50
+}
+
 .notion-viewport{
   display: none;
 }

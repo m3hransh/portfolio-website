@@ -11,17 +11,20 @@ interface BlogProps {
 
 const Blog: FC<BlogProps> = ({ blogItems }) => {
   return (
-    <div>
-      <h2>Blog</h2>
-      {blogItems.map((item) => (
-        <Link
-          href={`blog/${slugify(item.name).toLowerCase()}`}
-          key={slugify(item.name).toLowerCase()}
-        >
-          <a>{item.name}</a>
-        </Link>
-      ))}
-    </div>
+    <main className="max-w-2xl mx-auto w-full px-4 h-screen mt-5">
+      <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
+        Blog Posts
+      </h3>
+      <ul>
+        {blogItems.map((item) => (
+          <li key={slugify(item.name).toLowerCase()}>
+            <Link href={`blog/${slugify(item.name).toLowerCase()}`}>
+              <a>{item.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 };
 
