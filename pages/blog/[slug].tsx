@@ -8,12 +8,13 @@ import { ParsedUrlQuery } from "querystring";
 import { NotionAPI } from "notion-client";
 import { ExtendedRecordMap } from "notion-types";
 import NotionPage from "../../components/NotionPage";
+import Container from "../../components/Container";
 
 const BlogPost: NextPage<BlogPostProps> = ({ recordMap }) => {
   return (
-    <div>
+    <Container>
       <NotionPage recordMap={recordMap} />
-    </div>
+    </Container>
   );
 };
 interface BlogPostProps {
@@ -22,24 +23,23 @@ interface BlogPostProps {
 interface Params extends ParsedUrlQuery {
   slug: string;
 }
-export const getStaticProps: GetStaticProps<BlogPostProps, Params> = async ({
-  params,
-}) => {
-  const data = await resolveRootPageData();
-  // Get only notion pages or databases
-  const blog_id = (await resolveMainPage("blog"))?.id;
-  if (!blog_id) return { notFound: true };
-  const blogItems = await resolveBlogPage(blog_id);
-  const post = blogItems.find(
-    (item) => slugify(item.name).toLowerCase() === params?.slug
-  );
-  if (!post) return { notFound: true };
-  const notion = new NotionAPI();
-  const recordMap = await notion.getPage(post.id);
-  console.log(recordMap);
+export const getStaticProps: GetStaticProps<BlogPostProps, Params> =
+  async ({ params }) => {
+    const data = await resolveRootPageData();
+    // Get only notion pages or databases
+    const blog_id = (await resolveMainPage("blog"))?.id;
+    if (!blog_id) return { notFound: true };
+    const blogItems = await resolveBlogPage(blog_id);
+    const post = blogItems.find(
+      (item) => slugify(item.name).toLowerCase() === params?.slug
+    );
+    if (!post) return { notFound: true };
+    const notion = new NotionAPI();
+    const recordMap = await notion.getPage(post.id);
+    console.log(recordMap);
 
-  return { props: { recordMap } };
-};
+    return { props: { recordMap } };
+  };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const blog_id = (await resolveMainPage("blog"))?.id;
@@ -48,7 +48,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = blogItems.map((item) => ({
     params: { slug: slugify(item.name).toLowerCase() },
   }));
-  console.log(paths);
+  // console.log(paths);
   return { paths, fallback: "blocking" };
 };
 export default BlogPost;

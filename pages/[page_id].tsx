@@ -13,10 +13,11 @@ import { resolveMainPage } from "../lib/resolve-main-page";
 import { resolveProjectPage } from "../lib/resolve-project-page";
 import { resolveAboutPage } from "../lib/resolve-about-page";
 import NotionPage from "../components/NotionPage";
+import Container from "../components/Container";
 
 const MainPage: NextPage<MainPageProps> = (props) => {
   return (
-    <div>
+    <Container>
       <Link href="/">
         <a>Home</a>
       </Link>
@@ -29,7 +30,7 @@ const MainPage: NextPage<MainPageProps> = (props) => {
       ) : props.type === "about" ? (
         <NotionPage recordMap={props.pageData} />
       ) : null}
-    </div>
+    </Container>
   );
 };
 

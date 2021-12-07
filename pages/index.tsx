@@ -3,6 +3,7 @@ import { Client } from "@notionhq/client";
 import Link from "next/link";
 import { Pages } from "../lib/types";
 import { resolveRootPageData } from "../lib/resolve-root-page-data";
+import Container from "../components/Container";
 
 interface Props {
   pages: Pages;
@@ -10,15 +11,17 @@ interface Props {
 const Home: NextPage<Props> = ({ pages }) => {
   // console.log(page);
   return (
-    <ul>
-      {pages.map(({ notionId, title }) => (
-        <li key={notionId}>
-          <Link href={`/${title}`}>
-            <a>{title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <Container>
+      <ul>
+        {pages.map(({ notionId, title }) => (
+          <li key={notionId}>
+            <Link href={`/${title}`}>
+              <a>{title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Container>
   );
 };
 

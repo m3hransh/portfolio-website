@@ -8,7 +8,6 @@ import {
   NotionRenderer,
 } from "react-notion-x";
 import Link from "next/link";
-import "react-notion-x/src/styles.css";
 import cs from "classnames";
 import { ExtendedRecordMap } from "notion-types";
 
@@ -28,17 +27,19 @@ const NotionPage: FC<Props> = (props) => {
   }
   const title = getPageTitle(recordMap);
   return (
-    <div>
+    <div className="relative max-w-2xl mx-auto">
       <Head>
         <meta name="description" content="Mehran portfolio" />
         <title>{title}</title>
       </Head>
       {/* <Navigation active={showPannel} /> */}
       <NotionRenderer
-        bodyClassName={cs("index-page")}
+        bodyClassName={cs("max-w-2xl")}
         recordMap={recordMap}
         fullPage={true}
         showTableOfContents={true}
+        darkMode={true}
+        pageHeader={<div className="bg-background-700"></div>}
         showCollectionViewDropdown={false}
         minTableOfContentsItems={3}
         //remove the hard code
