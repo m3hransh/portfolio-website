@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import cs from "classnames";
 import { ExtendedRecordMap } from "notion-types";
+import { Pages } from "../lib/types";
 
 interface NotionPageProps {
   className?: string;
@@ -17,10 +18,21 @@ interface NotionPageProps {
 }
 interface Props {
   recordMap: ExtendedRecordMap;
+  pages: Pages;
 }
-
+export const mapPageUrl = (pages: Pages) => (pageId: string) => {
+  pageId = (pageId || "").replace(/-/g, "");
+  const page = Object.keys(pages).find(
+    (key) => pages[key].notionId === pageId
+  );
+  if (page) {
+    return pages[page].href;
+  } else {
+    return `/blog/${pageId}`;
+  }
+};
 const NotionPage: FC<Props> = (props) => {
-  const { recordMap } = props;
+  const { recordMap, pages } = props;
   const [showPannel, setShowPannel] = useState(true);
   if (!recordMap) {
     return null;
@@ -42,9 +54,10 @@ const NotionPage: FC<Props> = (props) => {
         pageHeader={<div className="bg-background-700"></div>}
         showCollectionViewDropdown={false}
         minTableOfContentsItems={3}
+        mapPageUrl={mapPageUrl(pages)}
         //remove the hard code
-        rootDomain={"localhost:3000/"}
-        rootPageId={"7cb4896b321e4ab2b8288fecaa92e39a"}
+        // rootDomain={"localhost:3000/"}
+        // rootPageId={"7cb4896b321e4ab2b8288fecaa92e39a"}
         // hideBlockId={true}
         components={{
           pageLink: ({

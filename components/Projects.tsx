@@ -16,7 +16,6 @@ const Projects: FC<ProjectsProps> = ({ projectItems }) => {
         Projects
       </h3>
       <ul>
-        Projects
         {projectItems.map((item) => (
           <li key={slugify(item.name).toLowerCase()}>
             <Link href={slugify(item.name).toLowerCase()}>

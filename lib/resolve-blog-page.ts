@@ -1,7 +1,10 @@
 import { Client } from "@notionhq/client";
 import { BlogItems } from "./types";
 
-export const resolveBlogPage = async (database_id: string, notion?: Client) => {
+export const resolveBlogPage = async (
+  database_id: string,
+  notion?: Client
+) => {
   if (!notion) {
     notion = new Client({
       auth: process.env.NOTION_SECRET,
@@ -17,10 +20,11 @@ export const resolveBlogPage = async (database_id: string, notion?: Client) => {
       id: el.id,
       name: (el.properties.name.type === "title" &&
         el.properties.name?.title[0].plain_text) as string,
-      cover:
-        el.cover?.type === "external"
+      cover: el.cover
+        ? el.cover?.type === "external"
           ? el.cover.external.url
-          : el.cover?.file.url,
+          : el.cover?.file.url
+        : null,
       author:
         el.properties.author.type === "created_by"
           ? {
@@ -36,9 +40,9 @@ export const resolveBlogPage = async (database_id: string, notion?: Client) => {
         el.properties.description.rich_text[0]
           ? el.properties.description.rich_text[0]?.plain_text
           : null,
-      last_edited_time:
-        el.properties.last_edited_time.type === "last_edited_time"
-          ? el.properties.last_edited_time.last_edited_time
+      date:
+        el.properties.created_time.type === "created_time"
+          ? el.properties.created_time.created_time
           : null,
       tags:
         el.properties.tags.type === "multi_select"

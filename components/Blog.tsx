@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { FC } from "react";
 import slugify from "slugify";
 import { BlogItems } from "../lib/types";
+import BlogPostCard from "./BlogPostCard";
 
 interface BlogProps {
   className?: string;
@@ -15,15 +16,18 @@ const Blog: FC<BlogProps> = ({ blogItems }) => {
       <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
         Blog Posts
       </h3>
-      <ul>
+      <div className="flex flex-col gap-3">
         {blogItems.map((item) => (
-          <li key={slugify(item.name).toLowerCase()}>
-            <Link href={`blog/${slugify(item.name).toLowerCase()}`}>
-              <a>{item.name}</a>
-            </Link>
-          </li>
+          <Link
+            key={slugify(item.name).toLowerCase()}
+            href={`blog/${slugify(item.name).toLowerCase()}`}
+          >
+            <a className="sm:border-b-2 pb-3">
+              <BlogPostCard postData={item} />
+            </a>
+          </Link>
         ))}
-      </ul>
+      </div>
     </main>
   );
 };

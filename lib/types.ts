@@ -1,21 +1,21 @@
 import { ExtendedRecordMap } from "notion-types";
 
 export interface Page {
-  title: string;
-  notionId: string | null | undefined;
+  href: string;
+  notionId: string;
 }
-export type Pages = Array<Page>;
+export type Pages = { [index: string]: Page };
 
 export interface BlogItem {
   id: string;
   name: string;
-  cover?: string;
+  cover?: string | null;
   author?: {
     name: string;
     avatar_url: string | null;
   } | null;
   description?: string | null;
-  last_edited_time: string | null;
+  date: string | null;
   tags?: string[];
 }
 

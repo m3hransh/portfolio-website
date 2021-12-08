@@ -1,22 +1,24 @@
 import type { NextPage, GetStaticProps } from "next";
-import { Client } from "@notionhq/client";
 import Link from "next/link";
-import { Pages } from "../lib/types";
-import { resolveRootPageData } from "../lib/resolve-root-page-data";
+import { BlogItems, Pages } from "../lib/types";
 import Container from "../components/Container";
 import { getMainPages } from "../lib/get-main-pages";
 import Image from "next/image";
+import { getRecentPosts } from "../lib/get-recent-posts";
+import BlogPostCard from "../components/BlogPostCard";
+import slugify from "slugify";
 
 interface Props {
   pages: Pages;
+  recentPosts: BlogItems;
 }
-const Home: NextPage<Props> = ({ pages }) => {
+const Home: NextPage<Props> = ({ pages, recentPosts }) => {
   // console.log(page);
   return (
     <Container pages={pages}>
-      <main className="max-w-2xl mx-auto px-4 h-screen mt-5">
+      <main className="max-w-2xl mx-auto px-4 mt-5">
         <div className="flex flex-col sm:flex-row-reverse ">
-          <div className="w-[20px] sm:w-[200px] relative mb-8 sm:mb-0 mr-auto">
+          <div className="w-[20px] sm:w-[200px]  relative mb-8 sm:mb-0 mr-auto">
             <Image
               alt="MohammadMehran Shahidi"
               height={230}
@@ -33,14 +35,31 @@ const Home: NextPage<Props> = ({ pages }) => {
               Software Engineer & Noobie Writer{" "}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-16">
-              I am studying computer science, developing software projects,
-              reflecting on life and writing about it.
+              I study computer science, develop software projects, reflect
+              on life and write about it.
             </p>
           </div>
         </div>
         <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
           Recent Posts
         </h3>
+        <div className="flex flex-col gap-3">
+          {recentPosts.map((item) => (
+            <Link
+              key={slugify(item.name).toLowerCase()}
+              href={`blog/${slugify(item.name).toLowerCase()}`}
+            >
+              <a className="sm:border-b-2 pb-3">
+                <BlogPostCard postData={item} />
+              </a>
+            </Link>
+          ))}
+        </div>
+        <Link href="/blog">
+          <p className="mt-2">
+            <a>{`View all post ->`}</a>
+          </p>
+        </Link>
       </main>
     </Container>
   );
@@ -49,10 +68,12 @@ const Home: NextPage<Props> = ({ pages }) => {
 export const getStaticProps: GetStaticProps = async () => {
   // Get children blocks of the root page
   const pages: Pages = await getMainPages();
-
+  // Get recent posts
+  const recentPosts: BlogItems = await getRecentPosts(pages, 3);
   return {
     props: {
       pages,
+      recentPosts,
     },
   };
 };

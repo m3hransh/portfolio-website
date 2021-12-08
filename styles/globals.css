@@ -21,6 +21,10 @@ html {
 *{
   max-width: 100%;
 }
+ p a {
+    @apply font-semibold cursor-pointer text-primary-700 dark:text-primary-400 hover:underline hover:text-primary-600;
+  }
+/* Notion styles */
 .root,
 #root,
 #docs-root {

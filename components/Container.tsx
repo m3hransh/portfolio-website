@@ -1,9 +1,8 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, ReactElement, useEffect, useState } from "react";
 import Link from "next/link";
 import cn from "classnames";
 import { useRouter } from "next/router";
 import { Pages } from "../lib/types";
-import slugify from "slugify";
 
 interface ContainerProps {
   className?: string;
@@ -33,6 +32,7 @@ export const NavItem: FC<NavItemProps> = ({ href, title }) => {
     </Link>
   );
 };
+
 const Container: FC<ContainerProps> = ({
   children,
   pages,
@@ -47,15 +47,11 @@ const Container: FC<ContainerProps> = ({
     <div className="bg-background-50 text-main-700 dark:text-main-100 dark:bg-background-800 h-full">
       <nav className="flex max-w-2xl mx-auto px-2 pt-4 pb-8">
         <div className="flex gap-7">
-          {pages.map((p) => (
+          {Object.keys(pages).map((title) => (
             <NavItem
-              key={p.title}
-              href={
-                p.title === "home"
-                  ? "/"
-                  : `/${slugify(p.title).toLowerCase()}`
-              }
-              title={p.title}
+              key={pages[title].notionId}
+              href={pages[title].href}
+              title={title}
             />
           ))}
         </div>
@@ -94,7 +90,7 @@ const Container: FC<ContainerProps> = ({
           )}
         </button>
       </nav>
-      <div className="flex flex-col justify-center">{children}</div>
+      <div className="flex flex-col pb-5 justify-center">{children}</div>
     </div>
   );
 };

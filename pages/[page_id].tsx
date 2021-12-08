@@ -1,20 +1,18 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Link from "next/link";
 import { resolveRootPageData } from "../lib/resolve-root-page-data";
 import Blog from "../components/Blog";
 import Projects from "../components/Projects";
 import Courses from "../components/Courses";
-import About from "../components/About";
 import { Client } from "@notionhq/client";
 import { resolveBlogPage } from "../lib/resolve-blog-page";
 import { MainPageProps, Pages } from "../lib/types";
-import { resolveMainPage } from "../lib/resolve-main-page";
 import { resolveProjectPage } from "../lib/resolve-project-page";
 import { resolveAboutPage } from "../lib/resolve-about-page";
 import NotionPage from "../components/NotionPage";
 import Container from "../components/Container";
 import slugify from "slugify";
+import { getMainPages } from "../lib/get-main-pages";
 
 const MainPage: NextPage<MainPageProps & Pages> = (props) => {
   return (
@@ -26,7 +24,7 @@ const MainPage: NextPage<MainPageProps & Pages> = (props) => {
       ) : props.type === "courses" ? (
         <Courses />
       ) : props.type === "about" ? (
-        <NotionPage recordMap={props.pageData} />
+        <NotionPage recordMap={props.pageData} pages={props.pages} />
       ) : null}
     </Container>
   );
@@ -41,50 +39,46 @@ export const getStaticProps: GetStaticProps<MainPageProps, Params> =
     const notion = new Client({
       auth: process.env.NOTION_SECRET,
     });
+    const page_id = params!.page_id as string;
+    const pages = await getMainPages();
 
-    const { block, pages } = await resolveMainPage(
-      params?.page_id as string,
-      notion
-    );
-    // console.log(block);
-    // console.log(page.results);
-    if (!block) {
+    if (!(page_id in pages)) {
       return { notFound: true };
     }
+
     let mainPageProps: MainPageProps;
-    if (
-      block?.type === "child_database" &&
-      block.child_database.title === "blog"
-    ) {
-      mainPageProps = {
-        type: "blog",
-        pages,
-        pageData: await resolveBlogPage(block.id, notion),
-      };
-    } else if (block.type === "child_database" && "projects") {
-      mainPageProps = {
-        type: "projects",
-        pages,
-        pageData: await resolveProjectPage(block.id, notion),
-      };
-    } else if (block.type === "child_database" && "courses") {
-      // mainPageProps = {
-      //   type: "courses",
-      //   pageData: {},
-      // };
+
+    switch (page_id) {
+      case "blog":
+        mainPageProps = {
+          type: "blog",
+          pages,
+          pageData: await resolveBlogPage(pages["blog"].notionId, notion),
+        };
+        break;
+      case "projects":
+        mainPageProps = {
+          type: "projects",
+          pages,
+          pageData: await resolveProjectPage(
+            pages["projects"].notionId,
+            notion
+          ),
+        };
+        break;
       // TODO: add course page
-      return { notFound: true };
-    } else if (block.type === "child_page" && "about") {
-      mainPageProps = {
-        type: "about",
-        pages,
-        pageData: await resolveAboutPage(block.id),
-      };
-    } else {
-      return { notFound: true };
+      case "courses":
+        return { notFound: true };
+      case "about":
+        mainPageProps = {
+          type: "about",
+          pages,
+          pageData: await resolveAboutPage(pages["about"].notionId),
+        };
+        break;
+      default:
+        return { notFound: true };
     }
-    // TODO error
-    // if (!pageData) return null;
 
     return {
       props: {
