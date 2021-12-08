@@ -43,7 +43,7 @@ const NotionPage: FC<Props> = (props) => {
   return (
     <div className="relative md:max-w-2xl mx-auto">
       <NotionRenderer
-        bodyClassName={cs("md:max-w-2xl px-3")}
+        bodyClassName={cs("md:max-w-2xl px-8")}
         recordMap={recordMap}
         fullPage={true}
         showTableOfContents={true}

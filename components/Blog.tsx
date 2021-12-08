@@ -12,10 +12,10 @@ interface BlogProps {
 
 const Blog: FC<BlogProps> = ({ blogItems }) => {
   return (
-    <main className="max-w-2xl mx-auto w-full px-4 h-screen mt-5">
-      <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
+    <main className="max-w-2xl mx-auto w-full px-8 mt-5">
+      <h2 className="font-bold text-3xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
         Blog Posts
-      </h3>
+      </h2>
       <div className="flex flex-col gap-3">
         {blogItems.map((item) => (
           <Link

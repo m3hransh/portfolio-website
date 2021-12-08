@@ -16,7 +16,7 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
   // console.log(page);
   return (
     <Container pages={pages}>
-      <main className="max-w-2xl mx-auto px-4 mt-5">
+      <main className="max-w-2xl mx-auto px-8 mt-5">
         <div className="flex flex-col sm:flex-row-reverse ">
           <div className="w-[20px] sm:w-[200px]  relative mb-8 sm:mb-0 mr-auto">
             <Image
@@ -36,7 +36,7 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-16">
               I study computer science, develop software projects, reflect
-              on life and write about it.
+              on life and write about them.
             </p>
           </div>
         </div>

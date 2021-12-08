@@ -4,6 +4,7 @@ import cn from "classnames";
 import { useRouter } from "next/router";
 import { Pages } from "../lib/types";
 import useTheme from "next-theme";
+import MobileMenu from "./MobileMenu";
 
 interface ContainerProps {
   className?: string;
@@ -46,7 +47,7 @@ const Container: FC<ContainerProps> = ({
 
   return (
     <div className="bg-background-50 text-main-700 dark:text-main-100 dark:bg-background-800 h-full">
-      <nav className="flex max-w-2xl mx-auto px-2 pt-4 pb-8">
+      <nav className="flex max-w-2xl mx-auto px-6 pt-4 pb-8">
         <div className="flex gap-7">
           {Object.keys(pages).map((title) => (
             <NavItem
@@ -56,6 +57,7 @@ const Container: FC<ContainerProps> = ({
             />
           ))}
         </div>
+        <MobileMenu pages={pages} />
         <button
           aria-label="Toggle Dark Mode"
           type="button"
