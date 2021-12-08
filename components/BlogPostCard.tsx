@@ -13,7 +13,7 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postData }) => {
   return (
     <div className=" dark:bg-background-700 sm:dark:bg-transparent rounded-3xl transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-105 dark:hover:bg-background-900">
       <div className="pb-4 sm:pb-0 flex flex-col items-center sm:items-stretch text-center sm:text-justify sm:flex-row gap-2">
-        <div className="border-secondary-600 flex-shrink-0 border-2 w-full rounded-t-3xl sm:rounded-3xl sm:w-40 h-40 relative">
+        <div className=" flex-shrink-0  w-full rounded-t-3xl sm:rounded-3xl sm:w-40 h-40 relative">
           {postData.cover ? (
             <Image
               src={postData.cover}

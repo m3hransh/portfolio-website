@@ -54,7 +54,7 @@ export default function Document() {
           name="google-site-verification"
         /> */}
       </Head>
-      <body className="dark">
+      <body>
         <Main />
         <NextScript />
       </body>

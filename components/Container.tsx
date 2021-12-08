@@ -3,6 +3,7 @@ import Link from "next/link";
 import cn from "classnames";
 import { useRouter } from "next/router";
 import { Pages } from "../lib/types";
+import useTheme from "next-theme";
 
 interface ContainerProps {
   className?: string;
@@ -38,7 +39,7 @@ const Container: FC<ContainerProps> = ({
   pages,
   ...customMeta
 }) => {
-  const resolvedTheme = "dark";
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), []);
@@ -59,9 +60,7 @@ const Container: FC<ContainerProps> = ({
           aria-label="Toggle Dark Mode"
           type="button"
           className="ml-auto mr-2 w-9 h-9 bg-gray-200 rounded-lg dark:bg-gray-600 flex items-center justify-center  hover:ring-2 ring-gray-300  transition-all"
-          // onClick={() =>
-          //   setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-          // }
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           {mounted && (
             <svg
@@ -71,7 +70,7 @@ const Container: FC<ContainerProps> = ({
               stroke="currentColor"
               className="w-5 h-5 text-gray-800 dark:text-gray-200"
             >
-              {resolvedTheme === "dark" ? (
+              {theme === "dark" ? (
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

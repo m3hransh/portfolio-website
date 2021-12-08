@@ -11,6 +11,7 @@ import Link from "next/link";
 import cs from "classnames";
 import { ExtendedRecordMap } from "notion-types";
 import { Pages } from "../lib/types";
+import useTheme from "next-theme";
 
 interface NotionPageProps {
   className?: string;
@@ -31,26 +32,22 @@ export const mapPageUrl = (pages: Pages) => (pageId: string) => {
     return `/blog/${pageId}`;
   }
 };
+
 const NotionPage: FC<Props> = (props) => {
   const { recordMap, pages } = props;
-  const [showPannel, setShowPannel] = useState(true);
+  const { theme } = useTheme();
   if (!recordMap) {
     return null;
   }
-  const title = getPageTitle(recordMap);
+
   return (
     <div className="relative md:max-w-2xl mx-auto">
-      <Head>
-        <meta name="description" content="Mehran portfolio" />
-        <title>{title}</title>
-      </Head>
-      {/* <Navigation active={showPannel} /> */}
       <NotionRenderer
         bodyClassName={cs("md:max-w-2xl px-3")}
         recordMap={recordMap}
         fullPage={true}
         showTableOfContents={true}
-        darkMode={true}
+        darkMode={theme === "dark"}
         pageHeader={<div className="bg-background-700"></div>}
         showCollectionViewDropdown={false}
         minTableOfContentsItems={3}
