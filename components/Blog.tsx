@@ -12,7 +12,7 @@ interface BlogProps {
 
 const Blog: FC<BlogProps> = ({ blogItems }) => {
   return (
-    <main className="max-w-2xl mx-auto w-full px-8 mt-5">
+    <main className="max-w-2xl mx-auto w-full px-8 mt-5 pb-4">
       <h2 className="font-bold text-3xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
         Blog Posts
       </h2>
@@ -22,7 +22,7 @@ const Blog: FC<BlogProps> = ({ blogItems }) => {
             key={slugify(item.name).toLowerCase()}
             href={`blog/${slugify(item.name).toLowerCase()}`}
           >
-            <a className="sm:border-b-2 pb-3">
+            <a className="sm:border-b-2 border-background-200 dark:border-background-700 pb-3">
               <BlogPostCard postData={item} />
             </a>
           </Link>

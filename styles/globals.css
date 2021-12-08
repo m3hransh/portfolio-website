@@ -21,9 +21,13 @@ html {
 *{
   max-width: 100%;
 }
- p a {
+p a {
     @apply font-semibold cursor-pointer text-primary-700 dark:text-primary-400 hover:underline hover:text-primary-600;
-  }
+}
+
+.socialIcon {
+    @apply hover:text-indigo-700 hover:-translate-y-0.5 transform transition;
+}
 /* Notion styles */
 :root,
 #root,

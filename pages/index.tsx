@@ -49,17 +49,17 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
               key={slugify(item.name).toLowerCase()}
               href={`blog/${slugify(item.name).toLowerCase()}`}
             >
-              <a className="sm:border-b-2 pb-3">
+              <a className="sm:border-b-2 border-background-200 dark:border-background-700 pb-3">
                 <BlogPostCard postData={item} />
               </a>
             </Link>
           ))}
         </div>
-        <Link href="/blog">
-          <p className="mt-2">
+        <p className="mt-2">
+          <Link href="/blog">
             <a>{`View all post ->`}</a>
-          </p>
-        </Link>
+          </Link>
+        </p>
       </main>
     </Container>
   );

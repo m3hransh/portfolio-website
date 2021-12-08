@@ -6,6 +6,7 @@ import { Pages } from "../lib/types";
 import useTheme from "next-theme";
 import MobileMenu from "./MobileMenu";
 import Head from "next/head";
+import Footer from "./Footer";
 
 interface ContainerProps {
   className?: string;
@@ -118,7 +119,8 @@ const Container: FC<ContainerProps> = ({
           )}
         </button>
       </nav>
-      <div className="flex flex-col pb-5 justify-center">{children}</div>
+      <div className="flex flex-col pb-8 justify-center">{children}</div>
+      <Footer />
     </div>
   );
 };
