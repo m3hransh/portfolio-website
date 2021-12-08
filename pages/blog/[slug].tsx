@@ -7,22 +7,46 @@ import { NotionAPI } from "notion-client";
 import { ExtendedRecordMap } from "notion-types";
 import NotionPage from "../../components/NotionPage";
 import Container from "../../components/Container";
-import { Pages } from "../../lib/types";
+import { BlogItem, Pages } from "../../lib/types";
 import { getMainPages } from "../../lib/get-main-pages";
+import Head from "next/head";
 
 interface BlogPostProps {
   recordMap: ExtendedRecordMap;
   pages: Pages;
+  post: BlogItem;
 }
 interface Params extends ParsedUrlQuery {
   slug: string;
 }
 
-const BlogPost: NextPage<BlogPostProps> = ({ recordMap, pages }) => {
+const BlogPost: NextPage<BlogPostProps> = ({ recordMap, pages, post }) => {
   return (
-    <Container pages={pages}>
-      <NotionPage recordMap={recordMap} pages={pages} />
-    </Container>
+    <>
+      <Head>
+        <meta name="twitter:title" content={post.name} />
+        <meta name="og:title" content={post.name} />
+        {post.cover && <meta property="og:image" content={post.cover} />}
+        {post.cover && (
+          <meta property="twitter:image" content={post.cover} />
+        )}
+        {post.description && (
+          <meta property="og:description" content={post.description} />
+        )}
+        {post.description && (
+          <meta
+            property="twitter:description"
+            content={post.description}
+          />
+        )}
+        {post.date && (
+          <meta property="article:published_time" content={post.date} />
+        )}
+      </Head>
+      <Container pages={pages}>
+        <NotionPage recordMap={recordMap} pages={pages} />
+      </Container>
+    </>
   );
 };
 
@@ -39,7 +63,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps, Params> =
     const notion = new NotionAPI();
     const recordMap = await notion.getPage(post.id);
 
-    return { props: { recordMap, pages } };
+    return { props: { recordMap, pages, post } };
   };
 
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Pages } from "../lib/types";
 import useTheme from "next-theme";
 import MobileMenu from "./MobileMenu";
+import Head from "next/head";
 
 interface ContainerProps {
   className?: string;
@@ -40,13 +41,39 @@ const Container: FC<ContainerProps> = ({
   pages,
   ...customMeta
 }) => {
+  const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), []);
-
+  const meta: any = {
+    title: "MohammadMehran Shahidi – Developer, writer, creator.",
+    description: `Software Engineer, Web Developer, and course creator.`,
+    image: "https://mehranshahidi.ir/static/images/banner.png",
+    type: "website",
+  };
   return (
     <div className="bg-background-50 text-main-700 dark:text-main-100 dark:bg-background-800 h-full">
+      <Head>
+        <title>{meta.title}</title>
+        <meta name="robots" content="follow, index" />
+        <meta content={meta.description} name="description" />
+        <meta
+          property="og:url"
+          content={`https://leerob.io${router.asPath}`}
+        />
+        <link rel="canonical" href={`https://leerob.io${router.asPath}`} />
+        <meta property="og:type" content={meta.type} />
+        <meta property="og:site_name" content="Mehran Shahidi" />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:image" content={meta.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Mehran87049642" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+      </Head>
       <nav className="flex max-w-2xl mx-auto px-6 pt-4 pb-8">
         <div className="flex gap-7">
           {Object.keys(pages).map((title) => (
