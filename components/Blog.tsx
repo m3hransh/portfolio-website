@@ -1,13 +1,13 @@
-import Link from "next/link";
-import React, { FC } from "react";
-import slugify from "slugify";
-import { BlogItems } from "../lib/types";
-import BlogPostCard from "./BlogPostCard";
+import Link from 'next/link'
+import React, { FC } from 'react'
+import slugify from 'slugify'
+import { BlogItems } from '../lib/types'
+import BlogPostCard from './BlogPostCard'
 
 interface BlogProps {
-  className?: string;
-  chidlren?: React.ReactNode;
-  blogItems: BlogItems;
+  className?: string
+  chidlren?: React.ReactNode
+  blogItems: BlogItems
 }
 
 const Blog: FC<BlogProps> = ({ blogItems }) => {
@@ -17,7 +17,7 @@ const Blog: FC<BlogProps> = ({ blogItems }) => {
         Blog Posts
       </h2>
       <div className="flex flex-col gap-3">
-        {blogItems.map((item) => (
+        {blogItems.map(item => (
           <Link
             key={slugify(item.name).toLowerCase()}
             href={`blog/${slugify(item.name).toLowerCase()}`}
@@ -29,7 +29,7 @@ const Blog: FC<BlogProps> = ({ blogItems }) => {
         ))}
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default Blog;
+export default Blog

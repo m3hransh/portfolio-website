@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import SocialFollow from "./SocialFollow";
+import React, { FC } from 'react'
+import SocialFollow from './SocialFollow'
 
 interface FooterProps {
-  className?: string;
-  chidlren?: React.ReactNode;
+  className?: string
+  chidlren?: React.ReactNode
 }
 
 const Footer: FC<FooterProps> = () => {
@@ -13,7 +13,7 @@ const Footer: FC<FooterProps> = () => {
       <SocialFollow />
       <div className="text-sm">Copyright 2021 MohammadMehran Shahidi</div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

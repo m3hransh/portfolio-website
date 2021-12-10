@@ -1,43 +1,45 @@
-import React, { FC, useEffect, useState } from "react";
-import useDelayedRender from "use-delayed-render";
-import styles from "../styles/mobile.menu.module.css";
-import cn from "classnames";
-import { Pages } from "../lib/types";
-import Link from "next/link";
+import React, { FC, useEffect, useState } from 'react'
+import useDelayedRender from 'use-delayed-render'
+import styles from '../styles/mobile.menu.module.css'
+import cn from 'classnames'
+import { Pages } from '../lib/types'
+import Link from 'next/link'
 
 interface MobileMenuProps {
-  className?: string;
-  chidlren?: React.ReactNode;
-  pages: Pages;
+  className?: string
+  chidlren?: React.ReactNode
+  pages: Pages
 }
 
 const MobileMenu: FC<MobileMenuProps> = ({ pages }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { mounted: isMenuMounted, rendered: isMenuRendered } =
-    useDelayedRender(isMenuOpen, {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(
+    isMenuOpen,
+    {
       enterDelay: 20,
       exitDelay: 300,
-    });
+    }
+  )
 
   function toggleMenu() {
     if (isMenuOpen) {
-      setIsMenuOpen(false);
-      document.body.style.overflow = "";
+      setIsMenuOpen(false)
+      document.body.style.overflow = ''
     } else {
-      setIsMenuOpen(true);
-      document.body.style.overflow = "hidden";
+      setIsMenuOpen(true)
+      document.body.style.overflow = 'hidden'
     }
   }
 
   useEffect(() => {
     return function cleanup() {
-      document.body.style.overflow = "";
-    };
-  }, []);
+      document.body.style.overflow = ''
+    }
+  }, [])
   return (
     <div>
       <button
-        className={cn(styles.burger, "visible md:hidden")}
+        className={cn(styles.burger, 'visible md:hidden')}
         aria-label="Toggle menu"
         type="button"
         onClick={toggleMenu}
@@ -49,14 +51,14 @@ const MobileMenu: FC<MobileMenuProps> = ({ pages }) => {
         <ul
           className={cn(
             styles.menu,
-            "flex flex-col absolute bg-gray-100 dark:bg-gray-900",
+            'flex flex-col absolute bg-gray-100 dark:bg-gray-900',
             isMenuRendered && styles.menuRendered
           )}
         >
           {Object.keys(pages).map((title, i) => (
             <li
               className="border-b border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 text-sm font-semibold"
-              style={{ transitionDelay: String(150 + i * 25) + "ms" }}
+              style={{ transitionDelay: String(150 + i * 25) + 'ms' }}
               key={title}
               onClick={toggleMenu}
             >
@@ -68,12 +70,12 @@ const MobileMenu: FC<MobileMenuProps> = ({ pages }) => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MobileMenu;
+export default MobileMenu
 
-function MenuIcon(props: JSX.IntrinsicElements["svg"]) {
+function MenuIcon(props: JSX.IntrinsicElements['svg']) {
   return (
     <svg
       className="h-5 w-5 absolute text-gray-900 dark:text-gray-100"
@@ -98,9 +100,9 @@ function MenuIcon(props: JSX.IntrinsicElements["svg"]) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
-function CrossIcon(props: JSX.IntrinsicElements["svg"]) {
+function CrossIcon(props: JSX.IntrinsicElements['svg']) {
   return (
     <svg
       className="h-5 w-5 absolute text-gray-900 dark:text-gray-100"
@@ -118,5 +120,5 @@ function CrossIcon(props: JSX.IntrinsicElements["svg"]) {
       <path d="M18 6L6 18" />
       <path d="M6 6l12 12" />
     </svg>
-  );
+  )
 }
