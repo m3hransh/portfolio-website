@@ -1,5 +1,7 @@
+import cn from 'classnames'
 import { FC } from 'react'
 
+// colors for tags 
 export const colorPicker = [
   ['#FDA4AF', '#BE123C'],
   ['#D8B4FE', '#6B21A8'],
@@ -15,6 +17,7 @@ interface TagsProps {
   tags: string[] | undefined
   className?: string
 }
+
 const Tags: FC<TagsProps> = ({ tags, className }) => {
   const n = colorPicker.length
   if (!tags) return null
@@ -24,9 +27,11 @@ const Tags: FC<TagsProps> = ({ tags, className }) => {
         tags.map((tag, index) => (
           <div
             key={tag}
-            className={`linkPop text-xs m-0.5 inline-flex items-center font-bold
-              leading-sm uppercase px-3 py-1
-              rounded-full`}
+            className={cn(
+              'linkPop text-xs m-0.5 inline-flex items-center',
+              'font-bold leading-sm uppercase px-3 py-1',
+              'rounded-full'
+            )}
             style={{
               color: colorPicker[index % n][1],
               backgroundColor: colorPicker[index % n][0],

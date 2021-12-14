@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import Link from 'next/link'
 import React, { FC } from 'react'
 import slugify from 'slugify'
@@ -12,17 +13,27 @@ interface BlogProps {
 
 const Blog: FC<BlogProps> = ({ blogItems }) => {
   return (
-    <main className="max-w-2xl mx-auto w-full px-8 mt-5 pb-4">
-      <h2 className="font-bold text-3xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
+    <main className='max-w-2xl mx-auto w-full px-8 mt-5 pb-4'>
+      <h2
+        className={cn(
+          'font-bold text-3xl md:text-4xl tracking-tight',
+          'mb-6 text-black dark:text-white'
+        )}
+      >
         Blog Posts
       </h2>
-      <div className="flex flex-col gap-3">
+      <div className='flex flex-col gap-3'>
         {blogItems.map(item => (
           <Link
             key={slugify(item.name).toLowerCase()}
             href={`blog/${slugify(item.name).toLowerCase()}`}
           >
-            <a className="sm:border-b-2 border-background-200 dark:border-background-700 pb-3">
+            <a
+              className={cn(
+                'sm:border-b-2 border-background-200',
+                'dark:border-background-700 pb-3'
+              )}
+            >
               <BlogPostCard postData={item} />
             </a>
           </Link>

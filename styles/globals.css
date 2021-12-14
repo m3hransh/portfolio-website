@@ -18,16 +18,19 @@ html {
   min-width: 360px;
   scroll-behavior: smooth;
 }
+/* this has fixed some problem with notion component overflow*/
 *{
   max-width: 100%;
 }
 p a {
-    @apply font-semibold cursor-pointer text-primary-700 dark:text-primary-400 hover:underline hover:text-primary-600;
+    @apply font-semibold cursor-pointer text-primary-700 
+      dark:text-primary-400 hover:underline hover:text-primary-600;
 }
 
 .socialIcon {
     @apply hover:text-indigo-700 hover:-translate-y-0.5 transform transition;
 }
+
 /* Notion styles */
 :root,
 #root,
@@ -36,25 +39,29 @@ p a {
   --fg-color: theme("colors.main.700")
   --bg-color-1:theme("colors.background.200")
 }
+
 .dark-mode {
   --bg-color: theme("colors.background.800")
   
   --bg-color-1: theme("colors.background.800")
   --fg-color: theme("colors.main.100")
 }
+
 .notion {
   font-family: inherit;
 }
+
 .notion-header {
   padding: 0;
-  @apply bg-background-100 bg-opacity-50 dark:bg-background-900 dark:bg-opacity-50
+  @apply bg-background-100 bg-opacity-50 dark:bg-background-900 
+    dark:bg-opacity-50;
 }
 
 .notion-viewport{
   display: none;
 }
-/* prism theme adjustments */
 
+/* prism theme adjustments */
 .notion-code {
   background-color: rgba(249, 250, 251, 1);
   border: 1px solid rgba(229, 231, 235, 1);
@@ -66,10 +73,12 @@ p a {
   background-color: rgba(17, 24, 39, 1);
   border-color: rgba(55, 65, 81, 1);
 }
+
 .notion-aside{
   position: absolute;
   right: -50%;
 }
+
 .notion code {
   color: rgba(31, 41, 55, 1);
   border: 0 none !important;
@@ -77,6 +86,7 @@ p a {
   background: none !important;
   padding: 0 !important;
 }
+
 .dark-mode .notion code {
   color: rgba(229, 231, 235, 1);
 }
@@ -150,17 +160,21 @@ p a {
 .token.variable {
   color: rgba(245, 158, 11, 1);
 }
+
 code[class*='language-'],
 pre[class*='language-'] {
   color: rgba(31, 41, 55, 1);
 }
+
 .dark-mode code[class*='language-'],
 .dark-mode pre[class*='language-'] {
   color: rgba(249, 250, 251, 1);
 }
+
 pre::-webkit-scrollbar {
   display: none;
 }
+
 pre {
   -ms-overflow-style: none;
   scrollbar-width: none;

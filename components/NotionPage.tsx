@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import { Collection, Code, NotionRenderer } from 'react-notion-x'
-import Link from 'next/link'
-import cs from 'classnames'
-import { ExtendedRecordMap } from 'notion-types'
-import { Pages } from '../lib/types'
+import cn from 'classnames'
 import useTheme from 'next-theme'
+import Link from 'next/link'
+import { ExtendedRecordMap } from 'notion-types'
+import React, { FC } from 'react'
+import { Code, Collection, NotionRenderer } from 'react-notion-x'
+import { Pages } from '../lib/types'
 
 interface Props {
   recordMap: ExtendedRecordMap
@@ -28,20 +28,20 @@ const NotionPage: FC<Props> = props => {
   }
 
   return (
-    <div className="relative md:max-w-2xl mx-auto">
+    <div className='relative md:max-w-2xl mx-auto'>
       <NotionRenderer
-        bodyClassName={cs('md:max-w-2xl px-8')}
+        bodyClassName={cn('md:max-w-2xl px-8')}
         recordMap={recordMap}
         fullPage={true}
         showTableOfContents={true}
         darkMode={theme === 'dark'}
-        pageHeader={<div className="bg-background-700"></div>}
+        pageHeader={<div className='bg-background-700'></div>}
         showCollectionViewDropdown={false}
         minTableOfContentsItems={3}
         mapPageUrl={mapPageUrl(pages)}
         //remove the hard code
-        // rootDomain={"localhost:3000/"}
-        // rootPageId={"7cb4896b321e4ab2b8288fecaa92e39a"}
+        // rootDomain={'localhost:3000/'}
+        // rootPageId={'7cb4896b321e4ab2b8288fecaa92e39a'}
         // hideBlockId={true}
         components={{
           pageLink: ({
