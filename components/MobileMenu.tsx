@@ -1,9 +1,9 @@
+import cn from 'classnames'
+import Link from 'next/link'
 import React, { FC, useEffect, useState } from 'react'
 import useDelayedRender from 'use-delayed-render'
-import styles from '../styles/mobile.menu.module.css'
-import cn from 'classnames'
 import { Pages } from '../lib/types'
-import Link from 'next/link'
+import styles from '../styles/mobile.menu.module.css'
 
 interface MobileMenuProps {
   className?: string
@@ -57,7 +57,10 @@ const MobileMenu: FC<MobileMenuProps> = ({ pages }) => {
         >
           {Object.keys(pages).map((title, i) => (
             <li
-              className="border-b border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 text-sm font-semibold"
+              className={cn(
+                'border-b border-gray-300 dark:border-gray-700',
+                'text-gray-900 dark:text-gray-100 text-sm font-semibold'
+              )}
               style={{ transitionDelay: String(150 + i * 25) + 'ms' }}
               key={title}
               onClick={toggleMenu}

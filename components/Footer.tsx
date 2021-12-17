@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import React, { FC } from 'react'
 import SocialFollow from './SocialFollow'
 
@@ -8,10 +9,20 @@ interface FooterProps {
 
 const Footer: FC<FooterProps> = () => {
   return (
-    <footer className="flex flex-col gap-2 justify-center items-center max-w-2xl px-8 mx-auto w-full pb-8">
-      <hr className="w-full border-1 border-gray-200 dark:border-gray-600 mb-8" />
+    <footer
+      className={cn(
+        'flex flex-col gap-2 justify-center',
+        'items-center max-w-2xl px-8 mx-auto w-full pb-8'
+      )}
+    >
+      <hr
+        className={cn(
+          'w-full border-1 border-gray-200',
+          'dark:border-gray-600 mb-8'
+        )}
+      />
       <SocialFollow />
-      <div className="text-sm">Copyright 2021 MohammadMehran Shahidi</div>
+      <div className='text-sm'>© 2021-2022 MohammadMehran Shahidi</div>
     </footer>
   )
 }
