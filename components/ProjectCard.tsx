@@ -17,21 +17,19 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
 
     <div
       className={cn(
-        'dark:bg-background-700 sm:dark:bg-transparent',
-        'rounded-3xl transition transform duration-500 ease-in-out',
-        'hover:-translate-y-1 hover:scale-105 dark:hover:bg-background-900'
+        'dark:bg-background-700  rounded-3xl',
       )}
     >
       <div
         className={cn(
           'pb-4 sm:pb-0 flex flex-col items-center',
-          'sm:items-stretch text-center sm:text-justify sm:flex-row gap-2'
+          ' text-center   gap-2'
         )}
       >
         <div
           className={cn(
             'flex-shrink-0 text-center leading-10 w-full',
-            'rounded-t-3xl sm:rounded-3xl sm:w-40 h-40 relative'
+            'rounded-t-3xl  sm:w-40 h-40 relative'
           )}
         >
           {projectData.cover ? (
@@ -60,10 +58,10 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
             {projectData.description &&
               `${projectData.description?.slice(0, 200)}...`}
           </div>
-          <div className="mt-auto gap-2 flex flex-col sm:flex-row w-full p-2">
+          <div className="mt-auto gap-2 flex flex-col  w-full p-2">
             <Tags className="" tags={projectData.tags} />
             {projectData.start_time && (
-              <Date className="sm:ml-auto" dateString={projectData.start_time} />
+              <Date className="" dateString={projectData.start_time} />
             )}
           </div>
         </div>

@@ -22,22 +22,10 @@ const Projects: FC<ProjectsProps> = ({ projectItems }) => {
       >
         Projects
       </h3>
-      <ul>
+      <ul className='grid sm:grid-cols-2 grid-cols-1 gap-4'>
         {projectItems.map(item => (
           <li key={slugify(item.name).toLowerCase()}>
-          <Link
-            key={slugify(item.name).toLowerCase()}
-            href={`blog/${slugify(item.name).toLowerCase()}`}
-          >
-            <a
-              className={cn(
-                'sm:border-b-2 border-background-200',
-                'dark:border-background-700 pb-3'
-              )}
-            >
               <ProjectCard projectData={item} />
-            </a>
-          </Link>
           </li>
         ))}
       </ul>
