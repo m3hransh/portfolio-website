@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import cn from 'classnames'
 
 export default function Document() {
   return (
@@ -54,7 +55,12 @@ export default function Document() {
           name="google-site-verification"
         /> */}
       </Head>
-      <body>
+      <body
+        className={cn(
+          'bg-background-50 text-main-700 dark:text-main-100',
+          'dark:bg-background-800 h-full'
+        )}
+      >
         <Main />
         <NextScript />
       </body>

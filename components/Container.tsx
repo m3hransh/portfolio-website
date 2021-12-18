@@ -53,12 +53,7 @@ const Container: FC<ContainerProps> = ({ children, pages }) => {
     type: 'website',
   }
   return (
-    <div
-      className={cn(
-        'bg-background-50 text-main-700 dark:text-main-100',
-        'dark:bg-background-800 h-full'
-      )}
-    >
+    <div>
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
