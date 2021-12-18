@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { FC } from 'react'
 import slugify from 'slugify'
 import { ProjectItems } from '../lib/types'
+import ProjectCard from './ProjectCard'
 
 interface ProjectsProps {
   className?: string
@@ -24,9 +25,19 @@ const Projects: FC<ProjectsProps> = ({ projectItems }) => {
       <ul>
         {projectItems.map(item => (
           <li key={slugify(item.name).toLowerCase()}>
-            <Link href={slugify(item.name).toLowerCase()}>
-              <a>{item.name}</a>
-            </Link>
+          <Link
+            key={slugify(item.name).toLowerCase()}
+            href={`blog/${slugify(item.name).toLowerCase()}`}
+          >
+            <a
+              className={cn(
+                'sm:border-b-2 border-background-200',
+                'dark:border-background-700 pb-3'
+              )}
+            >
+              <ProjectCard projectData={item} />
+            </a>
+          </Link>
           </li>
         ))}
       </ul>

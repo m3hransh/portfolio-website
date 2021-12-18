@@ -20,10 +20,11 @@ export const resolveProjectPage = async (
       id: el.id,
       name: (el.properties.name.type === 'title' &&
         el.properties.name?.title[0].plain_text) as string,
-      cover:
-        el.cover?.type === 'external'
+      cover: el.cover
+        ? el.cover?.type === 'external'
           ? el.cover.external.url
-          : el.cover?.file.url,
+          : el.cover?.file.url
+        : null,
       contributors:
         el.properties.contributors.type === 'people'
           ? el.properties.contributors.people.map(p => ({

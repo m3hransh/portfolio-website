@@ -23,7 +23,7 @@ export interface ProjectItem {
   id: string
   name: string
   description: string | null
-  cover?: string
+  cover?: string | null
   contributors: { name: string | null; avatar_url: string | null }[]
   start_time: string | null
   finish_time: string | null
