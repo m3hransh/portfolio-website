@@ -1,7 +1,15 @@
 import { Client } from '@notionhq/client'
 import { BlogItems } from './types'
-
-export const resolveBlogPage = async (database_id: string, notion?: Client) => {
+interface Params {
+  database_id:string
+  notion?: Client
+  preview?: boolean
+}
+export const resolveBlogPage = async ({
+  database_id,
+  notion,
+  preview = false,
+}:Params) => {
   if (!notion) {
     notion = new Client({
       auth: process.env.NOTION_SECRET,
@@ -45,8 +53,17 @@ export const resolveBlogPage = async (database_id: string, notion?: Client) => {
         el.properties.tags.type === 'multi_select'
           ? el.properties.tags.multi_select.map(e => e.name)
           : [],
+      published:
+        el.properties.published.type === 'checkbox'
+          ? el.properties.published.checkbox
+          : true,
     })
   })
 
-  return blogItems
+  // fitler the unpublished ones
+  let result
+  if (!preview) result = blogItems.filter(v => v.published)
+  else result = blogItems
+
+  return result
 }

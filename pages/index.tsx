@@ -82,11 +82,11 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({preview}) => {
   // Get children blocks of the root page
   const pages: Pages = await getMainPages()
   // Get recent posts
-  const recentPosts: BlogItems = await getRecentPosts(pages, 3)
+  const recentPosts: BlogItems = await getRecentPosts(pages, 3, preview)
   return {
     props: {
       pages,

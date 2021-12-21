@@ -36,6 +36,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps<MainPageProps, Params> = async ({
   params,
+  preview
 }) => {
   const notion = new Client({
     auth: process.env.NOTION_SECRET,
@@ -54,7 +55,7 @@ export const getStaticProps: GetStaticProps<MainPageProps, Params> = async ({
       mainPageProps = {
         type: 'blog',
         pages,
-        pageData: await resolveBlogPage(pages['blog'].notionId, notion),
+        pageData: await resolveBlogPage({database_id:pages['blog'].notionId, notion:notion, preview}),
       }
       break
     case 'projects':

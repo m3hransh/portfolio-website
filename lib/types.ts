@@ -17,6 +17,7 @@ export interface BlogItem {
   description?: string | null
   date: string | null
   tags?: string[]
+  published: boolean
 }
 
 export interface ProjectItem {

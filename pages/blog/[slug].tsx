@@ -47,11 +47,12 @@ const BlogPost: NextPage<BlogPostProps> = ({ recordMap, pages, post }) => {
 
 export const getStaticProps: GetStaticProps<BlogPostProps, Params> = async ({
   params,
+  preview,
 }) => {
   const pages: Pages = await getMainPages()
   const blog_id = pages.blog?.notionId
   if (!blog_id) return { notFound: true }
-  const blogItems = await resolveBlogPage(blog_id)
+  const blogItems = await resolveBlogPage({database_id:blog_id, preview:preview})
   const post = blogItems.find(
     item => slugify(item.name).toLowerCase() === params?.slug
   )
@@ -66,7 +67,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getMainPages()
   const blog_id = pages.blog?.notionId
   if (!blog_id) throw error('There is blog page in root notion page')
-  const blogItems = await resolveBlogPage(blog_id)
+  const blogItems = await resolveBlogPage({database_id:blog_id})
   const paths = blogItems.map(item => ({
     params: { slug: slugify(item.name).toLowerCase() },
   }))

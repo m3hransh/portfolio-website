@@ -63,7 +63,7 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postData }) => {
           <div className="mt-auto gap-2 flex flex-col sm:flex-row w-full p-2">
             <Tags className="" tags={postData.tags} />
             {postData.date && (
-              <Date className="sm:ml-auto" dateString={postData.date} />
+              <Date className="sm:ml-auto text-left" dateString={postData.date} />
             )}
           </div>
         </div>
