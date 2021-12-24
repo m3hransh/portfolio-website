@@ -1,5 +1,5 @@
 const colors = require('tailwindcss/colors')
-const { fontFamily } = require('tailwindcss/defaultTheme');
+
 module.exports = {
   purge: ['./pages/**/*.tsx', './components/**/*.tsx', './layouts/**/*.tsx'],
   darkMode: 'class', // or 'media' or 'class'
@@ -37,9 +37,6 @@ module.exports = {
         red: colors.red,
         yellow: colors.yellow,
       },
-      fontFamily: {
-        sans: ['IBM Plex Sans', ...fontFamily.sans]
-      },
     },
 
     variants: {
@@ -48,6 +45,6 @@ module.exports = {
         typography: ['dark', 'responsive']
       },
     },
-    plugins: [require('@tailwindcss/typography')],
+    //plugins: [require('@tailwindcss/typography')],
   }
 }

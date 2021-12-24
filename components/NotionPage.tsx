@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import useTheme from 'next-theme'
 import Link from 'next/link'
-import { ExtendedRecordMap } from 'notion-types'
+import { ExtendedRecordMap, PageBlock } from 'notion-types'
 import React, { FC } from 'react'
 import { Code, Collection, NotionRenderer } from 'react-notion-x'
 import { Pages } from '../lib/types'
@@ -10,6 +10,7 @@ interface Props {
   recordMap: ExtendedRecordMap
   pages: Pages
 }
+// custom url map
 export const mapPageUrl = (pages: Pages) => (pageId: string) => {
   pageId = (pageId || '').replace(/-/g, '')
   const page = Object.keys(pages).find(key => pages[key].notionId === pageId)
@@ -18,6 +19,13 @@ export const mapPageUrl = (pages: Pages) => (pageId: string) => {
   } else {
     return `/blog/${pageId}`
   }
+}
+// this should be completed for the blog meta data on top of
+// like author and time length and date
+// use this link :
+//https://github.com/NotionX/react-notion-x/blob/master/packages/react-notion-x/src/components/collection-row.tsx
+export const CustomCollectionRow: FC<{ block: PageBlock }> = () => {
+  return <></>
 }
 
 const NotionPage: FC<Props> = props => {
@@ -28,14 +36,14 @@ const NotionPage: FC<Props> = props => {
   }
 
   return (
-    <div className='relative md:max-w-2xl mx-auto'>
+    <div className="relative md:max-w-2xl mx-auto">
       <NotionRenderer
-        bodyClassName={cn('md:max-w-2xl px-8')}
+        bodyClassName={cn(' md:px-1 px-8')}
         recordMap={recordMap}
         fullPage={true}
         showTableOfContents={true}
         darkMode={theme === 'dark'}
-        pageHeader={<div className='bg-background-700'></div>}
+        pageHeader={<div className="bg-background-700"></div>}
         showCollectionViewDropdown={false}
         minTableOfContentsItems={3}
         mapPageUrl={mapPageUrl(pages)}
@@ -69,7 +77,7 @@ const NotionPage: FC<Props> = props => {
           ),
           code: Code,
           collection: Collection,
-          // collectionRow: CollectionRow,
+          collectionRow: CustomCollectionRow,
         }}
       />
     </div>

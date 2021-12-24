@@ -49,6 +49,7 @@ p a {
 
 .notion {
   font-family: inherit;
+  font-size: inherit;
 }
 
 .notion-header {
@@ -74,9 +75,12 @@ p a {
   border-color: rgba(55, 65, 81, 1);
 }
 
-.notion-aside{
+.notion-aside {
   position: absolute;
   right: -50%;
+}
+.notion-aside-table-of-contents {
+  position: fixed;
 }
 
 .notion code {
