@@ -13,7 +13,7 @@ interface BlogProps {
 
 const Blog: FC<BlogProps> = ({ blogItems }) => {
   return (
-    <main className='max-w-2xl mx-auto w-full px-8 mt-5 pb-4'>
+    <main className='max-w-2xl md:px-4 px-8 mx-auto w-full mt-5 pb-4'>
       <h2
         className={cn(
           'font-bold text-3xl md:text-4xl tracking-tight',

@@ -12,7 +12,7 @@ const Footer: FC<FooterProps> = () => {
     <footer
       className={cn(
         'flex flex-col gap-2 justify-center',
-        'items-center max-w-2xl px-8 mx-auto w-full pb-8'
+        'items-center  max-w-2xl md:px-0 px-8 mx-auto w-full pb-8'
       )}
     >
       <hr

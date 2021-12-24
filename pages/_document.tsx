@@ -58,7 +58,7 @@ export default function Document() {
       <body
         className={cn(
           'bg-background-50 text-main-700 dark:text-main-100',
-          'dark:bg-background-800 h-full'
+          'dark:bg-background-800 md:text-lg text-base'
         )}
       >
         <Main />

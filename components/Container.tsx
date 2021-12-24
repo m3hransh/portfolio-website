@@ -71,7 +71,7 @@ const Container: FC<ContainerProps> = ({ children, pages }) => {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
-      <nav className="flex max-w-2xl mx-auto px-6 pt-4 pb-8">
+      <nav className="flex  max-w-2xl mx-auto md:px-0 px-6 pt-4 pb-8">
         <div className="flex gap-7">
           {Object.keys(pages).map(title => (
             <NavItem
