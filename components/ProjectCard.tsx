@@ -24,7 +24,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
         <div
           className={cn(
             'flex-shrink-0 text-center leading-10 w-full',
-            'rounded-t-3xl  sm:w-40 h-40 relative'
+            'rounded-t-3xl   h-40 relative'
           )}
         >
           {projectData.cover ? (
@@ -34,7 +34,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
               objectFit="cover"
               objectPosition="center"
               layout="fill"
-              className="rounded-lg shadow"
+              className="rounded-t-3xl shadow"
             />
           ) : (
             <Image
