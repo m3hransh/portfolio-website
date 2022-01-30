@@ -51,6 +51,10 @@ export const resolveProjectPage = async (
         el.properties.tags.type === 'multi_select'
           ? el.properties.tags.multi_select.map(e => e.name)
           : [],
+      url: 
+        el.properties.url.type === 'url'
+          ? el.properties.url.url
+        : null,
     })
   })
 

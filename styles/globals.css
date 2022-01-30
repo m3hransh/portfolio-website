@@ -30,6 +30,10 @@ p a {
 .socialIcon {
     @apply hover:text-indigo-700 hover:-translate-y-0.5 transform transition;
 }
+.link {
+    @apply font-semibold cursor-pointer text-primary-700 
+      dark:text-primary-400 hover:underline hover:text-primary-600;
+  }
 
 /* Notion styles */
 :root,

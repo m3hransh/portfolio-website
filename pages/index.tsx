@@ -25,7 +25,7 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
               alt='MohammadMehran Shahidi'
               height={230}
               width={230}
-              src='/avatar.svg'
+              src='/avatar.webp'
               className='rounded-full filter grayscale'
             />
           </div>
@@ -39,7 +39,7 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
               Mehran Shahidi
             </h1>
             <h2 className='text-gray-700 dark:text-gray-200 mb-4'>
-              Software Engineer & Noobie Writer{' '}
+              Software Engineer & Newbie Writer{' '}
             </h2>
             <p className='text-gray-600 dark:text-gray-400 mb-16'>
               I study computer science, develop software projects, reflect on

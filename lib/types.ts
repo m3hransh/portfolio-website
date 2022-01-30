@@ -29,6 +29,7 @@ export interface ProjectItem {
   start_time: string | null
   finish_time: string | null
   tags: string[]
+  url: string | null
 }
 export type ProjectItems = Array<ProjectItem>
 export type BlogItems = Array<BlogItem>
