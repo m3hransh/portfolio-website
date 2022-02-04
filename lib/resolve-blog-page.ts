@@ -46,8 +46,8 @@ export const resolveBlogPage = async ({
           ? el.properties.description.rich_text[0]?.plain_text
           : null,
       date:
-        el.properties.created_time.type === 'created_time'
-          ? el.properties.created_time.created_time
+        el.properties.date.type === 'date'
+          ? el.properties.date.date?.start || null
           : null,
       tags:
         el.properties.tags.type === 'multi_select'
