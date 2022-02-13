@@ -15,21 +15,21 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ pages, recentPosts }) => {
-  // console.log(page);
+
   return (
     <Container pages={pages}>
-      <main className='max-w-2xl mx-auto md:px-4 px-8 mt-5'>
-        <div className='flex flex-col sm:flex-row-reverse '>
-          <div className='relative mb-8 sm:mb-0 mr-auto'>
+      <main className="max-w-2xl mx-auto md:px-4 px-8 mt-5">
+        <div className="flex flex-col sm:flex-row-reverse ">
+          <div className="relative mb-8 sm:mb-0 mr-auto">
             <Image
-              alt='MohammadMehran Shahidi'
+              alt="MohammadMehran Shahidi"
               height={230}
               width={230}
-              src='/avatar.webp'
-              className='rounded-full filter grayscale'
+              src="/avatar.webp"
+              className="rounded-full filter grayscale"
             />
           </div>
-          <div className='flex flex-col pr-8'>
+          <div className="flex flex-col pr-8">
             <h1
               className={cn(
                 'font-bold text-3xl md:text-5xl',
@@ -38,10 +38,10 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
             >
               Mehran Shahidi
             </h1>
-            <h2 className='text-gray-700 dark:text-gray-200 mb-4'>
+            <h2 className="text-gray-700 dark:text-gray-200 mb-4">
               Software Engineer & Newbie Writer{' '}
             </h2>
-            <p className='text-gray-600 dark:text-gray-400 mb-16'>
+            <p className="text-gray-600 dark:text-gray-400 mb-16">
               I study computer science, develop software projects, reflect on
               life and write about them.
             </p>
@@ -55,7 +55,7 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
         >
           Recent Posts
         </h3>
-        <div className='flex flex-col gap-3'>
+        <div className="flex flex-col gap-3">
           {recentPosts.map(item => (
             <Link
               key={slugify(item.name).toLowerCase()}
@@ -72,17 +72,18 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
             </Link>
           ))}
         </div>
-        <p className='mt-2'>
-          <Link href='/blog'>
+        <p className="mt-2">
+          <Link href="/blog">
             <a>{`View all post ->`}</a>
           </Link>
         </p>
+
       </main>
     </Container>
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({preview}) => {
+export const getStaticProps: GetStaticProps = async ({ preview }) => {
   // Get children blocks of the root page
   const pages: Pages = await getMainPages()
   // Get recent posts
