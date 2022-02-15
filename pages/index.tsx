@@ -74,11 +74,11 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
             </Link>
           ))}
         </div>
-        <p className="mt-2">
+        <div className="mt-3 font-mono transition ease-out transform hover:translate-x-4 hover:scale-105">
           <Link href="/blog">
             <a>{`View all post ->`}</a>
           </Link>
-        </p>
+        </div>
 
       </main>
     </Container>

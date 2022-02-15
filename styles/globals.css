@@ -51,6 +51,9 @@ p a {
   --fg-color: theme("colors.main.100")
 }
 
+.notion-page-has-cover .notion-page-icon-wrapper img.notion-page-icon {
+    top: 0;
+}
 .notion {
   font-family: inherit;
   font-size: inherit;

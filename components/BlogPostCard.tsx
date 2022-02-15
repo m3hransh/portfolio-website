@@ -20,7 +20,7 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postData }) => {
       className={cn(
         'dark:bg-background-700 sm:dark:bg-transparent',
         'rounded-3xl transition transform duration-500 ease-in-out',
-        'hover:-translate-y-1 hover:scale-105 dark:hover:bg-background-900'
+        'hover:-translate-y-1 hover:scale-105 hover:bg-background-100 dark:hover:bg-background-900'
       )}
     >
       <div
