@@ -7,12 +7,37 @@ import { Code, Collection, NotionRenderer } from 'react-notion-x'
 import { Pages } from '../lib/types'
 import Image from 'next/image'
 import { Block } from 'notion-types'
+import { buildUrl, extractPublicId } from 'cloudinary-build-url'
 
 interface Props {
   recordMap: ExtendedRecordMap
   pages: Pages
 }
 // custom url map
+
+export const buildBlur = (url:string) => {
+    url = buildUrl(extractPublicId(url), {
+    cloud: {
+      cloudName: 'm3hransh',
+      version: '1644765161',
+      resourceType: 'image',
+      storageType: 'upload',
+    },
+    transformations: {
+    //Resize the image
+    effect: {
+        name: 'blur',
+        value: 800,
+      },
+    resize: {
+        width: 700,
+        
+      },
+      quality: 1,
+  }
+  })
+  return url
+}
 export const defaultMapImageUrl = (url: string, block: Block) => {
   if (!url) {
     return null
@@ -25,26 +50,6 @@ export const defaultMapImageUrl = (url: string, block: Block) => {
   if (url.startsWith('/images')) {
     url = `https://www.notion.so${url}`
   }
-
-  console.log(url)
-  // more recent versions of notion don't proxy unsplash images
-  if (!url.startsWith('https://images.unsplash.com')) {
-    url = `https://www.notion.so${
-      url.startsWith('/image') ? url : `/image/${encodeURIComponent(url)}`
-    }`
-
-    const notionImageUrlV2 = new URL(url)
-    let table = block.parent_table === 'space' ? 'block' : block.parent_table
-    if (table === 'collection') {
-      table = 'block'
-    }
-    notionImageUrlV2.searchParams.set('table', table)
-    notionImageUrlV2.searchParams.set('id', block.id)
-    notionImageUrlV2.searchParams.set('cache', 'v2')
-
-    url = notionImageUrlV2.toString()
-  }
-
   return url
 }
 export const mapPageUrl = (pages: Pages) => (pageId: string) => {
@@ -70,6 +75,24 @@ const NotionPage: FC<Props> = props => {
   if (!recordMap) {
     return null
   }
+const shimmer = (w:number, h:number) => `
+  <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#333" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#333" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#333" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`
+
+const toBase64 = (str:string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str)
 
   return (
     <div className="relative md:max-w-2xl mx-auto">
@@ -122,7 +145,8 @@ const NotionPage: FC<Props> = props => {
                 objectFit={props.style?.objectFit}
                 objectPosition={props.style?.objectPosition}
                 layout="fill"
-                
+                placeholder="blur"
+              blurDataURL={buildBlur(props.src)}
               />
             )
           },
