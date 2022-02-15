@@ -21,14 +21,15 @@ export const resolveBlogPage = async ({
   })
   const blogItems: BlogItems = []
   page.results.forEach(el => {
+    console.log(el.properties.thumbnail)
     blogItems.push({
       id: el.id,
       name: (el.properties.name.type === 'title' &&
         el.properties.name?.title[0].plain_text) as string,
-      cover: el.cover
-        ? el.cover?.type === 'external'
-          ? el.cover.external.url
-          : el.cover?.file.url
+      cover: el.properties.thumbnail
+        ? el.properties.thumbnail?.type === 'url'
+          ? el.properties.thumbnail.url
+            : null
         : null,
       author:
         el.properties.author.type === 'created_by'

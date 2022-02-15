@@ -2,6 +2,7 @@ import cn from 'classnames'
 import Image from 'next/image'
 import React, { FC } from 'react'
 import { BlogItem } from '../lib/types'
+import { buildBlurUrl } from '../lib/utils'
 import Date from './Date'
 import Tags from './Tags'
 
@@ -41,6 +42,8 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postData }) => {
               objectFit="cover"
               objectPosition="center"
               layout="fill"
+              placeholder="blur"
+              blurDataURL={buildBlurUrl(postData.cover)}
               className="rounded-lg shadow"
             />
           ) : (
@@ -50,6 +53,7 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postData }) => {
               objectFit="cover"
               objectPosition="center"
               layout="fill"
+              placeholder="blur"
               className="rounded-lg shadow"
             />
           )}

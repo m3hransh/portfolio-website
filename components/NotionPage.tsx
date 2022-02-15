@@ -6,40 +6,14 @@ import React, { FC } from 'react'
 import { Code, Collection, NotionRenderer } from 'react-notion-x'
 import { Pages } from '../lib/types'
 import Image from 'next/image'
-import { Block } from 'notion-types'
-import { buildUrl, extractPublicId } from 'cloudinary-build-url'
+import { buildBlurUrl } from '../lib/utils'
 
 interface Props {
   recordMap: ExtendedRecordMap
   pages: Pages
 }
-// custom url map
 
-export const buildBlur = (url:string) => {
-    url = buildUrl(extractPublicId(url), {
-    cloud: {
-      cloudName: 'm3hransh',
-      version: '1644765161',
-      resourceType: 'image',
-      storageType: 'upload',
-    },
-    transformations: {
-    //Resize the image
-    effect: {
-        name: 'blur',
-        value: 800,
-      },
-    resize: {
-        width: 700,
-        
-      },
-      quality: 1,
-  }
-  })
-  return url
-}
 export const defaultMapImageUrl = (url: string): string => {
-
   if (url.startsWith('data:')) {
     return url
   }
@@ -49,6 +23,7 @@ export const defaultMapImageUrl = (url: string): string => {
   }
   return url
 }
+
 export const mapPageUrl = (pages: Pages) => (pageId: string) => {
   pageId = (pageId || '').replace(/-/g, '')
   const page = Object.keys(pages).find(key => pages[key].notionId === pageId)
@@ -76,21 +51,21 @@ const NotionPage: FC<Props> = props => {
   return (
     <div className="relative md:max-w-2xl mx-auto">
       <NotionRenderer
-        bodyClassName={cn(' md:px-1 px-8')}
+        bodyClassName={cn(' md:px-1 px-8 ')}
         recordMap={recordMap}
         fullPage={true}
         showTableOfContents={true}
         darkMode={theme === 'dark'}
-        pageHeader={<div className="bg-background-700"></div>}
         showCollectionViewDropdown={false}
         minTableOfContentsItems={3}
         mapPageUrl={mapPageUrl(pages)}
         mapImageUrl={defaultMapImageUrl}
+        pageCover={<></>}
         //remove the hard code
         // rootDomain={'localhost:3000/'}
         // rootPageId={'7cb4896b321e4ab2b8288fecaa92e39a'}
         // hideBlockId={true}
-        // customImages={true}
+        customImages={true}
         components={{
           pageLink: ({
             href,
@@ -118,15 +93,21 @@ const NotionPage: FC<Props> = props => {
           image: (props: any) => {
             console.log(props)
             return (
-              <Image
-                src={props.src}
-                className={props.className}
-                objectFit={props.style?.objectFit}
-                objectPosition={props.style?.objectPosition}
-                layout="fill"
-                placeholder="blur"
-              blurDataURL={buildBlur(props.src)}
-              />
+              <div
+                className="w-full relative"
+                style={{
+                  paddingBottom: '60%',
+                }}
+              >
+                <Image
+                  src={props.src}
+                  objectPosition={props.style?.objectPosition}
+                  objectFit="contain"
+                  placeholder="blur"
+                  layout="fill"
+                  blurDataURL={buildBlurUrl(props.src)}
+                />
+              </div>
             )
           },
           code: Code,

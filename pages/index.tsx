@@ -8,6 +8,7 @@ import Container from '../components/Container'
 import { getMainPages } from '../lib/get-main-pages'
 import { getRecentPosts } from '../lib/get-recent-posts'
 import { BlogItems, Pages } from '../lib/types'
+import avatar from '../public/avatar.webp'
 
 interface Props {
   pages: Pages
@@ -25,8 +26,9 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
               alt="MohammadMehran Shahidi"
               height={230}
               width={230}
-              src="/avatar.webp"
-              className="rounded-full filter grayscale"
+              src={avatar}
+              placeholder='blur'
+              className="rounded-full"
             />
           </div>
           <div className="flex flex-col pr-8">

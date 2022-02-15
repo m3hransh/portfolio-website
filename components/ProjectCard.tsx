@@ -5,6 +5,7 @@ import { ProjectItem } from '../lib/types'
 import Date from './Date'
 import Tags from './Tags'
 import { IoCalendarOutline, IoLogoGithub } from 'react-icons/io5'
+import { buildBlurUrl } from '../lib/utils'
 
 interface ProjectCardProps {
   className?: string
@@ -33,7 +34,9 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
               alt="Cover Image"
               objectFit="cover"
               objectPosition="center"
+              placeholder='blur'
               layout="fill"
+              blurDataURL={buildBlurUrl(projectData.cover)}
               className="rounded-t-3xl shadow"
             />
           ) : (
@@ -43,6 +46,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
               objectFit="cover"
               objectPosition="center"
               layout="fill"
+              placeholder="blur"
               className="rounded-lg shadow"
             />
           )}
