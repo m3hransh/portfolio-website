@@ -7,6 +7,7 @@ import { Code, Collection, NotionRenderer } from 'react-notion-x'
 import { Pages } from '../lib/types'
 import Image from 'next/image'
 import { buildBlurUrl } from '../lib/utils'
+import ImageEnlarger from './ImageEnlarger'
 
 interface Props {
   recordMap: ExtendedRecordMap
@@ -91,7 +92,6 @@ const NotionPage: FC<Props> = props => {
             </Link>
           ),
           image: (props: any) => {
-            console.log(props)
             return (
               <div
                 className="w-full relative"
@@ -99,14 +99,16 @@ const NotionPage: FC<Props> = props => {
                   paddingBottom: '60%',
                 }}
               >
-                <Image
-                  src={props.src}
-                  objectPosition={props.style?.objectPosition}
-                  objectFit="contain"
-                  placeholder="blur"
-                  layout="fill"
-                  blurDataURL={buildBlurUrl(props.src)}
-                />
+                <ImageEnlarger>
+                  <Image
+                    src={props.src}
+                    objectPosition={props.style?.objectPosition}
+                    objectFit="contain"
+                    placeholder="blur"
+                    layout="fill"
+                    blurDataURL={buildBlurUrl(props.src)}
+                  />
+                </ImageEnlarger>
               </div>
             )
           },

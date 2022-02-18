@@ -21,7 +21,6 @@ export const resolveBlogPage = async ({
   })
   const blogItems: BlogItems = []
   page.results.forEach(el => {
-    console.log(el.properties.thumbnail)
     blogItems.push({
       id: el.id,
       name: (el.properties.name.type === 'title' &&
