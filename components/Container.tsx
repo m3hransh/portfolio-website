@@ -47,9 +47,9 @@ const Container: FC<ContainerProps> = ({ children, pages }) => {
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), [])
   const meta: any = {
-    title: 'MohammadMehran Shahidi – Developer, writer, creator.',
-    description: `Software Engineer, Web Developer, and course creator.`,
-    image: 'https://mehranshahidi.ir/static/images/banner.png',
+    title: 'MohammadMehran Shahidi - Software Engineer & Blogger',
+    description: `In this website, I share useful content about Programming and some other general topics`,
+    image: 'https://res.cloudinary.com/m3hransh/image/upload/v1644916928/mehran/banner_ph4zrc.png',
     type: 'website',
   }
   return (
@@ -58,15 +58,15 @@ const Container: FC<ContainerProps> = ({ children, pages }) => {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://leerob.io${router.asPath}`} />
-        <link rel="canonical" href={`https://leerob.io${router.asPath}`} />
+        <meta property="og:url" content={`https://mehranshahidi.ir${router.asPath}`} />
+        <link rel="canonical" href={`https://mehranshahidi.ir${router.asPath}`} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Mehran Shahidi" />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@Mehran87049642" />
+        <meta name="twitter:site" content="@m3hransh" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
