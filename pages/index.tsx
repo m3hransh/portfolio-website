@@ -8,7 +8,7 @@ import Container from '../components/Container'
 import { getMainPages } from '../lib/get-main-pages'
 import { getRecentPosts } from '../lib/get-recent-posts'
 import { BlogItems, Pages } from '../lib/types'
-import avatar from '../public/avatar.webp'
+import avatar from '../public/profile.webp'
 
 interface Props {
   pages: Pages
