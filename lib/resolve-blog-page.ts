@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client'
 import { BlogItems } from './types'
 interface Params {
-  database_id:string
+  database_id: string
   notion?: Client
   preview?: boolean
 }
@@ -9,7 +9,7 @@ export const resolveBlogPage = async ({
   database_id,
   notion,
   preview = false,
-}:Params) => {
+}: Params) => {
   if (!notion) {
     notion = new Client({
       auth: process.env.NOTION_SECRET,
@@ -24,25 +24,25 @@ export const resolveBlogPage = async ({
     blogItems.push({
       id: el.id,
       name: (el.properties.name.type === 'title' &&
-        el.properties.name?.title[0].plain_text) as string,
+        el.properties.name?.title.length && el.properties.name?.title[0].plain_text) as string,
       cover: el.properties.thumbnail
         ? el.properties.thumbnail?.type === 'url'
           ? el.properties.thumbnail.url
-            : null
+          : null
         : null,
       author:
         el.properties.author.type === 'created_by'
           ? {
-              name: el.properties.author.created_by.id,
-              avatar_url:
-                'avatar_url' in el.properties.author.created_by
-                  ? el.properties.author.created_by.avatar_url
-                  : null,
-            }
+            name: el.properties.author.created_by.id,
+            avatar_url:
+              'avatar_url' in el.properties.author.created_by
+                ? el.properties.author.created_by.avatar_url
+                : null,
+          }
           : null,
       description:
         el.properties.description.type === 'rich_text' &&
-        el.properties.description.rich_text[0]
+          el.properties.description.rich_text[0]
           ? el.properties.description.rich_text[0]?.plain_text
           : null,
       date:

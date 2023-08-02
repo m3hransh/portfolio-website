@@ -58,8 +58,8 @@ const Container: FC<ContainerProps> = ({ children, pages }) => {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://mehranshahidi.ir${router.asPath}`} />
-        <link rel="canonical" href={`https://mehranshahidi.ir${router.asPath}`} />
+        <meta property="og:url" content={`https://mehransh.com${router.asPath}`} />
+        <link rel="canonical" href={`https://mehransh.com${router.asPath}`} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Mehran Shahidi" />
         <meta property="og:description" content={meta.description} />
