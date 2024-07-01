@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import Image from "next/legacy/image"
+import Image from "next/image"
 import React, { FC } from 'react'
 import { ProjectItem } from '../lib/types'
 import Date from './Date'
@@ -33,23 +33,27 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
             <Image
               src={projectData.cover}
               alt="Cover Image"
-              objectFit="cover"
-              objectPosition="center"
               placeholder='blur'
-              layout="fill"
               blurDataURL={buildBlurUrl(projectData.cover)}
               className="rounded-t-3xl shadow"
-            />
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center"
+              }} />
           ) : (
             <Image
               src={errorImage}
               alt="Cover Image"
-              objectFit="cover"
-              objectPosition="center"
-              layout="fill"
               placeholder="blur"
               className="rounded-lg shadow"
-            />
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center"
+              }} />
           )}
         </div>
         <div className="flex flex-col p-2 gap-4 w-full">
@@ -87,7 +91,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ProjectCard

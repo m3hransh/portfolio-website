@@ -11,6 +11,9 @@ dependencies:
   '@tailwindcss/typography':
     specifier: ^0.4.1
     version: 0.4.1(tailwindcss@2.2.19)
+  classnames:
+    specifier: ^2.5.1
+    version: 2.5.1
   cloudinary-build-url:
     specifier: ^0.2.4
     version: 0.2.4

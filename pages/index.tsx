@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import type { GetStaticProps, NextPage } from 'next'
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from 'next/link'
 import slugify from 'slugify'
 import BlogPostCard from '../components/BlogPostCard'
@@ -29,7 +29,10 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
               src={avatar}
               placeholder='blur'
               className="rounded-full"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
           <div className="flex flex-col pr-8">
             <h1
@@ -82,7 +85,7 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
 
       </main>
     </Container>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {

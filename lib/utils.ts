@@ -1,6 +1,6 @@
 import { buildUrl, extractPublicId } from 'cloudinary-build-url'
 
-export const buildBlurUrl = (url: string) => {
+export const buildBlurUrl = (url: string): string => {
   url = buildUrl(extractPublicId(url), {
     cloud: {
       cloudName: 'm3hransh',
