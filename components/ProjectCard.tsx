@@ -6,6 +6,7 @@ import Date from './Date'
 import Tags from './Tags'
 import { IoCalendarOutline, IoLogoGithub } from 'react-icons/io5'
 import { buildBlurUrl } from '../lib/utils'
+import errorImage from '../public/error.png'
 
 interface ProjectCardProps {
   className?: string
@@ -41,7 +42,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
             />
           ) : (
             <Image
-              src="/error.png"
+              src={errorImage}
               alt="Cover Image"
               objectFit="cover"
               objectPosition="center"

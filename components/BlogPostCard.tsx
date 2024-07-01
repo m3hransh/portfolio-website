@@ -5,6 +5,7 @@ import { BlogItem } from '../lib/types'
 import { buildBlurUrl } from '../lib/utils'
 import Date from './Date'
 import Tags from './Tags'
+import errorImage from '../public/error.png'
 
 interface BlogPostCardProps {
   className?: string
@@ -48,7 +49,7 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postData }) => {
             />
           ) : (
             <Image
-              src="/error.png"
+              src={errorImage}
               alt="Cover Image"
               objectFit="cover"
               objectPosition="center"
