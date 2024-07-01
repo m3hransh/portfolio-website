@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import type { GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import slugify from 'slugify'
 import BlogPostCard from '../components/BlogPostCard'

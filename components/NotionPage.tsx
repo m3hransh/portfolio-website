@@ -5,7 +5,7 @@ import { ExtendedRecordMap, PageBlock } from 'notion-types'
 import React, { FC } from 'react'
 import { Code, Collection, NotionRenderer } from 'react-notion-x'
 import { Pages } from '../lib/types'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { buildBlurUrl } from '../lib/utils'
 import ImageEnlarger from './ImageEnlarger'
 

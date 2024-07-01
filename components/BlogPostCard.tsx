@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import React, { FC } from 'react'
 import { BlogItem } from '../lib/types'
 import { buildBlurUrl } from '../lib/utils'

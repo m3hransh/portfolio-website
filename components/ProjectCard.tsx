@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import React, { FC } from 'react'
 import { ProjectItem } from '../lib/types'
 import Date from './Date'
