@@ -63,6 +63,7 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
         <div className="flex flex-col gap-3">
           {recentPosts.map(item => (
             <div
+              key={slugify(item.name).toLowerCase()}
               className={cn(
                 'sm:border-b-2 border-background-200',
                 'dark:border-background-700 pb-3'

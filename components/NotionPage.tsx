@@ -66,7 +66,6 @@ const NotionPage: FC<Props> = props => {
         // rootDomain={'localhost:3000/'}
         // rootPageId={'7cb4896b321e4ab2b8288fecaa92e39a'}
         // hideBlockId={true}
-        customImages={true}
         components={{
           pageLink: ({
             href,
@@ -101,6 +100,7 @@ const NotionPage: FC<Props> = props => {
               >
                 <ImageEnlarger>
                   <Image
+                    alt={props.alt}
                     src={props.src}
                     objectPosition={props.style?.objectPosition}
                     placeholder="blur"

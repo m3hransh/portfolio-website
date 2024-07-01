@@ -90,6 +90,7 @@ export const getStaticProps: GetStaticProps<MainPageProps, Params> = async ({
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await resolveRootPageData()
   // Get only notion pages or databases
+  // @ts-ignore
   const pages = data.results.filter(block => block.type.startsWith('child_'))
   // Return all the title of pages
   const paths = pages.map((page: any) => ({
