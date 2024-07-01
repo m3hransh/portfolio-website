@@ -59,24 +59,24 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
         </h3>
         <div className="flex flex-col gap-3">
           {recentPosts.map(item => (
-            <Link
-              key={slugify(item.name).toLowerCase()}
-              href={`blog/${slugify(item.name).toLowerCase()}`}
-            >
-              <a
-                className={cn(
-                  'sm:border-b-2 border-background-200',
-                  'dark:border-background-700 pb-3'
-                )}
+            <div
+              className={cn(
+                'sm:border-b-2 border-background-200',
+                'dark:border-background-700 pb-3'
+              )}>
+              <Link
+                key={slugify(item.name).toLowerCase()}
+                href={`blog/${slugify(item.name).toLowerCase()}`}
+
               >
                 <BlogPostCard postData={item} />
-              </a>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
         <div className="mt-3 font-mono transition ease-out transform hover:translate-x-4 hover:scale-105">
           <Link href="/blog">
-            <a>{`View all post ->`}</a>
+            <p>{`View all post ->`}</p>
           </Link>
         </div>
 

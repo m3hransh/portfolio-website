@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps<MainPageProps, Params> = async ({
       mainPageProps = {
         type: 'blog',
         pages,
-        pageData: await resolveBlogPage({database_id:pages['blog'].notionId, notion:notion, preview}),
+        pageData: await resolveBlogPage({ database_id: pages['blog'].notionId, notion: notion, preview }),
       }
       break
     case 'projects':

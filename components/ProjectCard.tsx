@@ -52,7 +52,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
             />
           )}
         </div>
-        <div className="flex flex-col p-2 gap-2 w-full">
+        <div className="flex flex-col p-2 gap-4 w-full">
           <div className="text-2xl mt-2">{projectData.name}</div>
           <div className="h-12 text-base">
             {projectData.description &&

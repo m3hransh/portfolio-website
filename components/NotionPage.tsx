@@ -88,7 +88,7 @@ const NotionPage: FC<Props> = props => {
               shallow={shallow}
               locale={locale}
             >
-              <a {...props} />
+              <p {...props} />
             </Link>
           ),
           image: (props: any) => {

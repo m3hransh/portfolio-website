@@ -28,14 +28,14 @@ const Blog: FC<BlogProps> = ({ blogItems }) => {
             key={slugify(item.name).toLowerCase()}
             href={`blog/${slugify(item.name).toLowerCase()}`}
           >
-            <a
+            <div
               className={cn(
                 'sm:border-b-2 border-background-200',
                 'dark:border-background-700 pb-3'
               )}
             >
               <BlogPostCard postData={item} />
-            </a>
+            </div>
           </Link>
         ))}
       </div>

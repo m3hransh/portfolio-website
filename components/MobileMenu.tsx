@@ -66,7 +66,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ pages }) => {
               onClick={toggleMenu}
             >
               <Link href={pages[title].href}>
-                <a className="flex w-auto pb-4">{title}</a>
+                <p className="flex w-auto pb-4">{title}</p>
               </Link>
             </li>
           ))}

@@ -25,7 +25,7 @@ export const NavItem: FC<NavItemProps> = ({ href, title }) => {
 
   return (
     <Link href={href}>
-      <a
+      <div
         className={cn(
           isActive
             ? 'font-semibold text-primary-800 dark:text-primary-200'
@@ -35,7 +35,7 @@ export const NavItem: FC<NavItemProps> = ({ href, title }) => {
         )}
       >
         <span className="capitalize">{title}</span>
-      </a>
+      </div>
     </Link>
   )
 }
