@@ -12,6 +12,10 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = ({ blogItems }) => {
+  // sort blog items by date
+  blogItems.sort((a, b) => {
+    return new Date(b.date || "1-1-2080").getTime() - new Date(a.date || "1-1-2080").getTime()
+  });
   return (
     <main className='max-w-2xl md:px-4 px-8 mx-auto w-full mt-5 pb-4'>
       <h2

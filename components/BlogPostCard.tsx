@@ -62,8 +62,8 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postData }) => {
           )}
         </div>
         <div className="flex flex-col p-2 gap-2 w-full">
-          <div className="text-2xl mt-2">{postData.name}</div>
-          <div>
+          <div className="text-xl mt-2">{postData.name}</div>
+          <div className="text-sm">
             {postData.description &&
               postData.description?.length > 200 ? postData.description?.slice(0, 200) + "..." : postData.description}
           </div>
