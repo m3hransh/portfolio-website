@@ -8,7 +8,7 @@ import Container from '../components/Container'
 import { getMainPages } from '../lib/get-main-pages'
 import { getRecentPosts } from '../lib/get-recent-posts'
 import { BlogItems, Pages } from '../lib/types'
-import avatar from '../public/profile.webp'
+import avatar from '../public/profile.png'
 
 interface Props {
   pages: Pages
@@ -24,8 +24,8 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
           <div className="relative mb-8 sm:mb-0 mr-auto">
             <Image
               alt="MohammadMehran Shahidi"
-              height={230}
-              width={230}
+              height={350}
+              width={350}
               src={avatar}
               placeholder='blur'
               className="rounded-full"
