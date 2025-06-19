@@ -1,11 +1,12 @@
 import cn from 'classnames'
-import Image from 'next/image'
+import Image from "next/image"
 import React, { FC } from 'react'
 import { ProjectItem } from '../lib/types'
 import Date from './Date'
 import Tags from './Tags'
 import { IoCalendarOutline, IoLogoGithub } from 'react-icons/io5'
 import { buildBlurUrl } from '../lib/utils'
+import errorImage from '../public/error.png'
 
 interface ProjectCardProps {
   className?: string
@@ -32,26 +33,30 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
             <Image
               src={projectData.cover}
               alt="Cover Image"
-              objectFit="cover"
-              objectPosition="center"
               placeholder='blur'
-              layout="fill"
               blurDataURL={buildBlurUrl(projectData.cover)}
               className="rounded-t-3xl shadow"
-            />
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center"
+              }} />
           ) : (
             <Image
-              src="/error.png"
+              src={errorImage}
               alt="Cover Image"
-              objectFit="cover"
-              objectPosition="center"
-              layout="fill"
               placeholder="blur"
               className="rounded-lg shadow"
-            />
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center"
+              }} />
           )}
         </div>
-        <div className="flex flex-col p-2 gap-2 w-full">
+        <div className="flex flex-col p-2 gap-4 w-full">
           <div className="text-2xl mt-2">{projectData.name}</div>
           <div className="h-12 text-base">
             {projectData.description &&
@@ -86,7 +91,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ projectData }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ProjectCard

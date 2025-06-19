@@ -25,7 +25,7 @@ export const NavItem: FC<NavItemProps> = ({ href, title }) => {
 
   return (
     <Link href={href}>
-      <a
+      <div
         className={cn(
           isActive
             ? 'font-semibold text-primary-800 dark:text-primary-200'
@@ -35,7 +35,7 @@ export const NavItem: FC<NavItemProps> = ({ href, title }) => {
         )}
       >
         <span className="capitalize">{title}</span>
-      </a>
+      </div>
     </Link>
   )
 }
@@ -71,8 +71,8 @@ const Container: FC<ContainerProps> = ({ children, pages }) => {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
-      <nav className="flex  max-w-2xl mx-auto md:px-0 px-6 pt-4 pb-8">
-        <div className="flex gap-7">
+      <nav className="flex max-w-2xl mx-auto md:px-0 px-6 pt-4 pb-8">
+        <div className="flex gap-7 md:block hidden">
           {Object.keys(pages).map(title => (
             <NavItem
               key={pages[title].notionId}

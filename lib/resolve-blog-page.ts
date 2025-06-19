@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Client } from '@notionhq/client'
 import { BlogItems } from './types'
 interface Params {

@@ -5,7 +5,7 @@ import { ExtendedRecordMap, PageBlock } from 'notion-types'
 import React, { FC } from 'react'
 import { Code, Collection, NotionRenderer } from 'react-notion-x'
 import { Pages } from '../lib/types'
-import Image from 'next/image'
+import Image from "next/image"
 import { buildBlurUrl } from '../lib/utils'
 import ImageEnlarger from './ImageEnlarger'
 
@@ -66,7 +66,6 @@ const NotionPage: FC<Props> = props => {
         // rootDomain={'localhost:3000/'}
         // rootPageId={'7cb4896b321e4ab2b8288fecaa92e39a'}
         // hideBlockId={true}
-        customImages={true}
         components={{
           pageLink: ({
             href,
@@ -88,7 +87,7 @@ const NotionPage: FC<Props> = props => {
               shallow={shallow}
               locale={locale}
             >
-              <a {...props} />
+              <p {...props} />
             </Link>
           ),
           image: (props: any) => {
@@ -101,16 +100,19 @@ const NotionPage: FC<Props> = props => {
               >
                 <ImageEnlarger>
                   <Image
+                    alt={props.alt}
                     src={props.src}
                     objectPosition={props.style?.objectPosition}
-                    objectFit="contain"
                     placeholder="blur"
-                    layout="fill"
                     blurDataURL={buildBlurUrl(props.src)}
-                  />
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: "contain"
+                    }} />
                 </ImageEnlarger>
               </div>
-            )
+            );
           },
           code: Code,
           collection: Collection,
@@ -118,7 +120,7 @@ const NotionPage: FC<Props> = props => {
         }}
       />
     </div>
-  )
+  );
 }
 
 export default NotionPage

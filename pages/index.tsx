@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import type { GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
+import Image from "next/image"
 import Link from 'next/link'
 import slugify from 'slugify'
 import BlogPostCard from '../components/BlogPostCard'
@@ -8,7 +8,7 @@ import Container from '../components/Container'
 import { getMainPages } from '../lib/get-main-pages'
 import { getRecentPosts } from '../lib/get-recent-posts'
 import { BlogItems, Pages } from '../lib/types'
-import avatar from '../public/profile.webp'
+import avatar from '../public/profile.png'
 
 interface Props {
   pages: Pages
@@ -24,12 +24,15 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
           <div className="relative mb-8 sm:mb-0 mr-auto">
             <Image
               alt="MohammadMehran Shahidi"
-              height={230}
-              width={230}
+              height={350}
+              width={350}
               src={avatar}
               placeholder='blur'
               className="rounded-full"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
           <div className="flex flex-col pr-8">
             <h1
@@ -59,30 +62,31 @@ const Home: NextPage<Props> = ({ pages, recentPosts }) => {
         </h3>
         <div className="flex flex-col gap-3">
           {recentPosts.map(item => (
-            <Link
+            <div
               key={slugify(item.name).toLowerCase()}
-              href={`blog/${slugify(item.name).toLowerCase()}`}
-            >
-              <a
-                className={cn(
-                  'sm:border-b-2 border-background-200',
-                  'dark:border-background-700 pb-3'
-                )}
+              className={cn(
+                'sm:border-b-2 border-background-200',
+                'dark:border-background-700 pb-3'
+              )}>
+              <Link
+                key={slugify(item.name).toLowerCase()}
+                href={`blog/${slugify(item.name).toLowerCase()}`}
+
               >
                 <BlogPostCard postData={item} />
-              </a>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
         <div className="mt-3 font-mono transition ease-out transform hover:translate-x-4 hover:scale-105">
           <Link href="/blog">
-            <a>{`View all post ->`}</a>
+            <p>{`View all post ->`}</p>
           </Link>
         </div>
 
       </main>
     </Container>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
